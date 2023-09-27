@@ -4,6 +4,7 @@ width ,height=1280,720 #Taille de la fenetre de jeu
 monEcran=pygame.display.set_mode((width ,height ))
 
 class Brick():
+
     #Attributs de classe
     color = '#70726E'
     pouvoirs = {1 : 'grosse' , 2 : 'perf' , 3 : 'double'}
