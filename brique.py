@@ -5,7 +5,7 @@ monEcran=pygame.display.set_mode((width ,height ))
 
 class Brick():
     #Attributs de classe
-    color = '70726E'
+    color = '#70726E'
     pouvoirs = {1 : 'grosse' , 2 : 'perf' , 3 : 'double'}
 
     def __init__(self, x:int, y:int, pouvoir:int): #Constructeur
