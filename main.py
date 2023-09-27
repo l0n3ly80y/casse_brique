@@ -16,7 +16,6 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         pygame.display.update()
         for evenement in pygame.event.get():# Boucle sur les evenements
             if evenement.type==pygame.QUIT: #Si l'evenement est quitter
-                print('[*] average fps: ',averageFPS())
                 pygame.quit()  #arret de pygame
                 jeu_en_cours=False #arret de la boucle
             if evenement.type==pygame.MOUSEBUTTONDOWN:
