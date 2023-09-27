@@ -14,14 +14,13 @@ class Brique :
 
 class Brick():
     #attribut de classe un dictionnaire de couleurs
-    COLORS = {1: "#64ff96", 2: "#ff6496", 3: "#9664ff"}
+    color = '70726E'
 
-    def __init__(self, x, y, hits):# le constructeur
+    def __init__(self, x, y, color):# le constructeur
         self.w = 75 # attribut longueur
         self.h = 20 # attreibut largeur
         self.pos = pygame.Vector2(x, y) # attribut position
-        self.hits = hits #attribut clé pour la couleur
-        self.col = Brick.COLORS[hits] # la couleur
+        self.color = color #attribut couleur
 
     # méthode pour afficher la brique
     def display(self):
