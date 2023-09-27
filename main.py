@@ -17,10 +17,9 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         for evenement in pygame.event.get():# Boucle sur les evenements
             if evenement.type==pygame.QUIT: #Si l'evenement est quitter
                 pygame.quit()  #arret de pygame
-                jeu_en_cours=False #arret de la boucle
+                running=False #arret de la boucle
             if evenement.type==pygame.MOUSEBUTTONDOWN:
                 monClic=True
-                resultat=True
             else:
                 monClic=False
 
