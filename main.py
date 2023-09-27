@@ -28,9 +28,12 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             if evenement.type==pygame.KEYDOWN:
                 if evenement.key==pygame.K_q:
                     paddle.isMovingLeft = True
+                    paddle.isMovingRight = False
 
                 elif evenement.key==pygame.K_d:
                     paddle.isMovingRight = True
+                    paddle.isMovingLeft = False
+
             elif evenement.type==pygame.KEYUP:
                 paddle.isMovingRight = False
                 paddle.isMovingLeft = False
