@@ -11,6 +11,10 @@ WIDTH ,HEIGHT=1280,720 #Taille de la fenetre de jeu
 monEcran=pygame.display.set_mode((WIDTH ,HEIGHT ))
 score_initial=0
 
+background_image = pygame.image.load("Images/background.png")
+background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
+
+
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou genre on quitte tu vois ?
@@ -18,8 +22,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
     while running:
-        monEcran.fill((100))
-
+        monEcran.blit(background_image, (0, 0))
 
         for evenement in pygame.event.get():# Boucle sur les evenements
             if evenement.type==pygame.QUIT: #Si l'evenement est quitter
