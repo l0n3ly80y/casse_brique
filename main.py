@@ -13,7 +13,7 @@ score_initial=0
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou genre on quitte tu vois ?
-    liste_briques = créer_briques()
+    liste_briques = creer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
     while running:
@@ -56,7 +56,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         pygame.display.update()
 
 
-def créer_briques():
+def creer_briques():
     """
     Renvoie la liste des coordonnées des briques
     """
