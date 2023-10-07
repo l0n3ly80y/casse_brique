@@ -12,11 +12,11 @@ class Paddle():
         self.pos = pygame.Vector2(WIDTH/2 - self.w/2, HEIGHT - 40) #La position initiale en fonction de la taille de la fenêtre
         self.isMovingLeft = False  # booléen pour mouvement à gauche
         self.isMovingRight = False  # idem à droite
-        self.stepSize = 0.75   # pas pour le déplacement
+        self.stepSize = 4   # pas pour le déplacement
     # méthode premettant l'affichage
     def display(self):
         # affichage du rectangle rect(x,y,longueur, largeur)
-        couleurPaddle=pygame.Color(100, 100, 100)
+        couleurPaddle=pygame.Color(100, 0, 200)
         pygame.draw.rect(self.monEcran,couleurPaddle,(self.pos.x, self.pos.y, self.w, self.h))
      # méthode qui gère le déplacement
     def move(self, step):

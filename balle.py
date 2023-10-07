@@ -7,7 +7,7 @@ class Ball():
 
     def __init__(self):#Constructeur
         self.rayon = 10 #Attribut rayon
-        self.vitesse = pygame.Vector2(1, 1)*0.2 #Attribut vitesse
+        self.vitesse = pygame.Vector2(1, 1)*1.5 #Attribut vitesse
         self.dir = pygame.Vector2(1, 1) #Attribut dir
         self.pos = pygame.Vector2(width/2, height/2) #Attribut position initiale
 
@@ -53,6 +53,16 @@ class Ball():
             self.pos.y > paddle.pos.y - self.rayon and
             self.pos.x > paddle.pos.x - self.rayon and
             self.pos.x < paddle.pos.x + paddle.w + self.rayon):
+            return True
+        else:
+            return False
+    def meetBricks(self,brick):
+        # méthode pour détecter la collision avec la ball
+
+        if (self.pos.y < brick.pos.y +brick.h and
+            self.pos.y > brick.pos.y - self.rayon and
+            self.pos.x > brick.pos.x - self.rayon and
+            self.pos.x < brick.pos.x + brick.l + self.rayon):
             return True
         else:
             return False

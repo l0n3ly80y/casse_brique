@@ -2,6 +2,7 @@
 from brique import *
 import time
 from paddle import *
+from balle import *
 import pygame
 from balle import *
 pygame.init()
@@ -10,6 +11,10 @@ WIDTH ,HEIGHT=1280,720 #Taille de la fenetre de jeu
 monEcran=pygame.display.set_mode((WIDTH ,HEIGHT ))
 score_initial=0
 
+background_image = pygame.image.load("Images/background.png")
+background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
+
+
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou genre on quitte tu vois ?
@@ -17,17 +22,12 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
     while running:
-        monEcran.fill((100))
-
+        monEcran.blit(background_image, (0, 0))
 
         for evenement in pygame.event.get():# Boucle sur les evenements
             if evenement.type==pygame.QUIT: #Si l'evenement est quitter
                 pygame.quit()  #arret de pygame
                 running=False #arret de la boucle
-            if evenement.type==pygame.MOUSEBUTTONDOWN:
-                monClic=True
-            else:
-                monClic=False
             if evenement.type==pygame.KEYDOWN:
                 if evenement.key==pygame.K_q:
                     paddle.isMovingLeft = True
@@ -40,7 +40,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             elif evenement.type==pygame.KEYUP:
                 paddle.isMovingRight = False
                 paddle.isMovingLeft = False
-            #appel des méthodes pour le paddle
+            # appel des méthodes pour la balle
         ball.display()
         ball.checkEdges()
         ball.update()
@@ -48,11 +48,17 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             if (ball.dir.y>0):
                 ball.dir.y=-ball.dir.y
             #appel des méthodes pour le paddle
+
         paddle.display() #affichage
         paddle.checkEdges()#collisions avec les bords
         paddle.update() #actualiser l'affichage des déplacements
-        for brique in liste_briques :
-            brique.display()
+        for i in range(len(liste_briques)):
+            liste_briques[i].display()   #Affichage des liste_briques
+        for i in range(len(liste_briques)-1,-1,-1):#Parcours de la liste inversée
+            if (ball.meetBricks(liste_briques[i])):#collision avec la balle
+                liste_briques.pop(i)     #Suppression de la brique touchée
+                #del liste_briques[i]
+                ball.dir.y*=-1    #Redirection de la balle
         pygame.display.update()
 
 
@@ -64,7 +70,7 @@ def creer_briques():
     cox = 0 #Coordonnée x
     coy = -70 #Coordonnée y
     liste_briques = []
-    for i in range(5) :
+    for i in range(6) :
         cox = 0
         coy += 70
         for j in range(10) :
