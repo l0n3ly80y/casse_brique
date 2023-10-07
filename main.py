@@ -13,6 +13,7 @@ score_initial=0
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou genre on quitte tu vois ?
+    liste_briques = créer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
     while running:
@@ -46,33 +47,30 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         paddle.display() #affichage
         paddle.checkEdges()#collisions avec les bords
         paddle.update() #actualiser l'affichage des déplacements
+        for brique in liste_briques :
+            brique.display()
         pygame.display.update()
 
 
-def cos_briques():
+def créer_briques():
     """
     Renvoie la liste des coordonnées des briques
     """
     liste_cos = [] #Liste des coordonnées des briques
-    cox = 100 #Coordonnée x
-    coy = 10 #Coordonnée y
-    for i in range(3) :
-        coy += 30
-        for j in range(10) :
-            cox += 85
-            liste_cos.append((cox,coy))
-    return liste_cos
-
-def placer_briques(): #Affichage des briques
-    liste_cos = cos_briques()
+    cox = 0 #Coordonnée x
+    coy = -70 #Coordonnée y
     liste_briques = []
-    for i in range(len(liste_cos)) :
-        brique = Brick(liste_cos[i][0], liste_cos[i][1])
-        brique.display()
+    for i in range(5) :
+        cox = 0
+        coy += 70
+        for j in range(10) :
+            liste_cos.append((cox,coy))
+            cox += 128
+    for k in range(len(liste_cos)) :
+        brique = Brick(liste_cos[k][0], liste_cos[k][1])
         liste_briques.append(brique)
     return liste_briques
 
-print(placer_briques())
 
 
 game(monEcran,score_initial)
