@@ -7,14 +7,12 @@ class Brick():
 
     #Attributs de classe
     color = '#70726E'
-    pouvoirs = {1 : 'grosse' , 2 : 'perf' , 3 : 'double'}
 
-    def __init__(self, x:int, y:int, pouvoir:int): #Constructeur
+    def __init__(self, x:int, y:int): #Constructeur
         self.largeur = 75 #Attribut longueur
         self.hauteur = 20 #Attribut largeur
         self.pos = pygame.Vector2(x, y) #Attribut position
         self.color = Brick.color #Attribut couleur
-        self.pouvoir = Brick.pouvoirs[pouvoir] #Attribut pouvoir
 
     def display(self):
         """

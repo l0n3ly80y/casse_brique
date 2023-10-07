@@ -49,7 +49,30 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         pygame.display.update()
 
 
-def placer_briques(monEcran):
+def cos_briques():
+    """
+    Renvoie la liste des coordonnées des briques
+    """
+    liste_cos = [] #Liste des coordonnées des briques
+    cox = 100 #Coordonnée x
+    coy = 10 #Coordonnée y
+    for i in range(3) :
+        coy += 30
+        for j in range(10) :
+            cox += 85
+            liste_cos.append((cox,coy))
+    return liste_cos
 
-    return 0
+def placer_briques(): #Affichage des briques
+    liste_cos = cos_briques()
+    liste_briques = []
+    for i in range(len(liste_cos)) :
+        brique = Brick(liste_cos[i][0], liste_cos[i][1])
+        brique.display()
+        liste_briques.append(brique)
+    return liste_briques
+
+print(placer_briques())
+
+
 game(monEcran,score_initial)
