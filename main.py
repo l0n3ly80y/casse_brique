@@ -15,7 +15,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     running=True#cette variable permet d'arreter la partie quand on meurt ou genre on quitte tu vois ?
     liste_briques = créer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
-    ball=Balle()
+    ball=Ball()
     while running:
         monEcran.fill((100))
 
