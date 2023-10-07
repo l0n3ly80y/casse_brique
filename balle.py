@@ -7,7 +7,7 @@ class Ball():
 
     def __init__(self):#Constructeur
         self.rayon = 10 #Attribut rayon
-        self.vitesse = pygame.Vector2(1, 1)*0.2 #Attribut vitesse
+        self.vitesse = pygame.Vector2(1, 1)*1.5 #Attribut vitesse
         self.dir = pygame.Vector2(1, 1) #Attribut dir
         self.pos = pygame.Vector2(width/2, height/2) #Attribut position initiale
 

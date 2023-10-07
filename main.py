@@ -67,7 +67,7 @@ def creer_briques():
     cox = 0 #Coordonnée x
     coy = -70 #Coordonnée y
     liste_briques = []
-    for i in range(5) :
+    for i in range(6) :
         cox = 0
         coy += 70
         for j in range(10) :
