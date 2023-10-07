@@ -53,6 +53,11 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         paddle.checkEdges()#collisions avec les bords
         paddle.update() #actualiser l'affichage des déplacements
         for brique in liste_briques :
+            if ball.meets(brique):#verifier qu'aucune brique n'est touchee par la balle
+                ball.dir.y=-ball.dir.y
+                for i in range(len(liste_briques)-1):#suppression de la brique touchee par comparaison des coordonnees
+                    if liste_briques[i].pos==brique.pos:
+                        del liste_briques[i]
             brique.display()
         pygame.display.update()
 
