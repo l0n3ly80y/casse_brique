@@ -3,6 +3,7 @@ from brique import *
 import time
 from paddle import *
 import pygame
+from balle import *
 pygame.init()
 WIDTH ,HEIGHT=1280,720 #Taille de la fenetre de jeu
 
