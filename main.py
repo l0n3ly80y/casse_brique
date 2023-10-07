@@ -58,8 +58,16 @@ def cos_briques():
             liste_cos.append((cox,coy))
     return liste_cos
 
-def placer_briques():
+def placer_briques(): #Affichage des briques
+    liste_cos = cos_briques()
+    liste_briques = []
+    for i in range(len(liste_cos)) :
+        brique = Brick(liste_cos[i][0], liste_cos[i][1])
+        brique.display()
+        liste_briques.append(brique)
+    return liste_briques
 
+print(placer_briques())
 
 
 game(monEcran,score_initial)
