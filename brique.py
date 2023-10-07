@@ -9,8 +9,8 @@ class Brick():
     color = '#70726E'
 
     def __init__(self, x:int, y:int): #Constructeur
-        self.largeur = 75 #Attribut longueur
-        self.hauteur = 20 #Attribut largeur
+        self.largeur = 128 #Attribut longueur
+        self.hauteur = 70 #Attribut largeur
         self.pos = pygame.Vector2(x, y) #Attribut position
         self.color = Brick.color #Attribut couleur
 
