@@ -39,12 +39,19 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
                 paddle.isMovingRight = False
                 paddle.isMovingLeft = False
             #appel des méthodes pour le paddle
-            paddle.display() #affichage
-            paddle.checkEdges()#collisions avec les bords
-            paddle.update() #actualiser l'affichage des déplacements
-            for brique in liste_briques :
-                brique.display()
-            pygame.display.update()
+        ball.display()
+        ball.checkEdges()
+        ball.update()
+        if (ball.meets(paddle)):
+            if (ball.dir.y>0):
+                ball.dir.y=-ball.dir.y
+            #appel des méthodes pour le paddle
+        paddle.display() #affichage
+        paddle.checkEdges()#collisions avec les bords
+        paddle.update() #actualiser l'affichage des déplacements
+        for brique in liste_briques :
+            brique.display()
+        pygame.display.update()
 
 
 def créer_briques():
