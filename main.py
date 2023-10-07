@@ -52,13 +52,13 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         paddle.display() #affichage
         paddle.checkEdges()#collisions avec les bords
         paddle.update() #actualiser l'affichage des déplacements
-        for brique in liste_briques :
-            if ball.meets(brique):#verifier qu'aucune brique n'est touchee par la balle
-                ball.dir.y=-ball.dir.y
-                for i in range(len(liste_briques)-1):#suppression de la brique touchee par comparaison des coordonnees
-                    if liste_briques[i].pos==brique.pos:
-                        del liste_briques[i]
-            brique.display()
+        for i in range(len(liste_briques)):
+            liste_briques[i].display()   #Affichage des liste_briques
+        for i in range(len(liste_briques)-1,-1,-1):#Parcours de la liste inversée
+            if (ball.meetBricks(liste_briques[i])):#collision avec la balle
+                liste_briques.pop(i)     #Suppression de la brique touchée
+                #del liste_briques[i]
+                ball.dir.y*=-1    #Redirection de la balle
         pygame.display.update()
 
 
@@ -70,7 +70,7 @@ def creer_briques():
     cox = 0 #Coordonnée x
     coy = -70 #Coordonnée y
     liste_briques = []
-    for i in range(5) :
+    for i in range(6) :
         cox = 0
         coy += 70
         for j in range(10) :
