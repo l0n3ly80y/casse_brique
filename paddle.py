@@ -12,11 +12,8 @@ class Paddle():
         self.pos = pygame.Vector2(WIDTH/2 - self.w/2, HEIGHT - 40) #La position initiale en fonction de la taille de la fenêtre
         self.isMovingLeft = False  # booléen pour mouvement à gauche
         self.isMovingRight = False  # idem à droite
-<<<<<<< HEAD
-        self.stepSize = 2   # pas pour le déplacement
-=======
-        self.stepSize = 0.75   # pas pour le déplacement
->>>>>>> 72884a2ef999e5139ff15469e31e329528d6bbfb
+        self.stepSize = 0.75
+
     # méthode premettant l'affichage
     def display(self):
         # affichage du rectangle rect(x,y,longueur, largeur)
