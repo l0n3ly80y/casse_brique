@@ -4,6 +4,7 @@ import time
 from paddle import *
 from balle import *
 import pygame
+from balle import *
 pygame.init()
 WIDTH ,HEIGHT=1280,720 #Taille de la fenetre de jeu
 
@@ -13,7 +14,7 @@ score_initial=0
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou genre on quitte tu vois ?
-    liste_briques = créer_briques()
+    liste_briques = creer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
     while running:
@@ -44,6 +45,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             if (ball.dir.y>0):
                 ball.dir.y=-ball.dir.y
             #appel des méthodes pour le paddle
+
         paddle.display() #affichage
         paddle.checkEdges()#collisions avec les bords
         paddle.update() #actualiser l'affichage des déplacements
@@ -52,7 +54,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         pygame.display.update()
 
 
-def créer_briques():
+def creer_briques():
     """
     Renvoie la liste des coordonnées des briques
     """
