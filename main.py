@@ -17,23 +17,24 @@ x -= 400
 x_tps_restant += 400
 y_tps_restant -= 325
 
+
 def game(monEcran):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou on quitte
     liste_briques = creer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
-    
+
     start_time = time.time()
     game_time = 200 # Temps en secondes pour le timer
-    
+
     gameplay_background = pygame.image.load("Images/background.png")
     gameplay_background = pygame.transform.scale(gameplay_background, (WIDTH, HEIGHT)) #Affichage du fond d'écran*
 
     pygame.mixer.music.load("sasageyo.mp3")
     pygame.mixer.music.play(-1) #Lancement de la musique
     pygame.mixer.music.set_volume(1)
-    
+
     while running:
         monEcran.blit(gameplay_background, (0, 0))
 
@@ -60,6 +61,21 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
         if (ball.meets(paddle)):
             if (ball.dir.y>0):
                 ball.dir.y=-ball.dir.y
+            if paddle.isMovingRight:
+                if ball.vitesse.x>0:
+                    ball.vitesse.x+=0.4
+                else:
+                    ball.vitesse.x-=0.5
+
+
+            elif paddle.isMovingLeft:
+                if ball.vitesse.x<0:
+                    ball.vitesse.x+=0.4
+                else:
+                    ball.vitesse.x-=0.5
+
+
+
 
             #appel des méthodes pour le paddle
 
@@ -70,9 +86,11 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
             liste_briques[i].display()   #Affichage des liste_briques
         for i in range(len(liste_briques)-1,-1,-1):#Parcours de la liste inversée
             if (ball.meetBricks(liste_briques[i])):#collision avec la balle
+                #balle.vitesse.x=pygame.Vector2(1, 1)*1.5
                 if ball.dir.y>0:
                     if ball.pos.x>liste_briques[i].pos.x+5 and ball.pos.x < liste_briques[i].pos.x-5+liste_briques[i].l:
                         ball.dir.y*=-1
+
                         print('collison de la balle avec le haut dune brique')
                     else:
                         ball.dir.x*=-1
@@ -108,10 +126,10 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
 
 
 
-def homescreen() :
+def homescreen(monEcran) :
     homescreen_background = pygame.image.load("Images/homescreen.png")
     homescreen_background = pygame.transform.scale(homescreen_background, (WIDTH, HEIGHT)) #Création du fond d'écran
-    
+
     pygame.mixer.music.load("op1.mp3")
     pygame.mixer.music.play(-1) #Lancement de la musique
     pygame.mixer.music.set_volume(0.15)
@@ -126,6 +144,7 @@ def homescreen() :
                 if evenement.type==pygame.MOUSEBUTTONDOWN:
                     running = False
                     game(monEcran)
+        pygame.display.update()
 
 
 
@@ -150,4 +169,4 @@ def creer_briques():
 
 
 if __name__=='__main__':
-    homescreen()
+    homescreen(monEcran)
