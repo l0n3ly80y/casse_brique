@@ -124,6 +124,12 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
         temps_rect.center = (x_tps_restant, y_tps_restant)
         monEcran.blit(temps, temps_rect) #Affichage du temps restant
 
+        if tr == 0 :
+            ending(monEcran,0)
+
+        if len(liste_briques) == 0 :
+            ending(monEcran,1)
+
         pygame.display.update()
 
 
@@ -147,6 +153,49 @@ def homescreen(monEcran) :
                 if evenement.type==pygame.MOUSEBUTTONDOWN:
                     running = False
                     game(monEcran)
+        pygame.display.update()
+
+
+
+def ending(monEcran, fin) :
+    WIDTH = 1280
+    HEIGHT = 720
+
+    ending_background = pygame.image.load("Images/ending.jpg")
+    ending_background = pygame.transform.scale(ending_background, (WIDTH, HEIGHT)) #Création du fond d'écran
+
+    pygame.mixer.music.load("op1.mp3")
+    pygame.mixer.music.play(-1) #Lancement de la musique
+    pygame.mixer.music.set_volume(0.15)
+    running = True
+
+    monEcran=pygame.display.set_mode((WIDTH ,HEIGHT ))
+    police = pygame.font.Font("pixel-font.TTF", 30)
+    x, y = monEcran.get_rect().center
+    y -= 100
+        
+    while running :
+        monEcran.blit(ending_background, (0, 0))
+        if fin == 0 :
+            texte = police.render("Vouz avez gagné ! Cliquez pour rejouer", 1, (120, 10, 210))
+            texte_rect = texte.get_rect()
+            texte_rect.center = (x,y)
+            monEcran.blit(texte, texte_rect)
+
+        else :
+            texte = police.render("Vouz avez perdu... Cliquez pour rejouer", 1, (120, 10, 210))
+            texte_rect = texte.get_rect()
+            texte_rect.center = (x,y)
+            monEcran.blit(texte, texte_rect)
+        for evenement in pygame.event.get():# Boucle sur les evenements
+                if evenement.type==pygame.QUIT: #Si l'evenement est quitter
+                    pygame.quit()  #arret de pygame
+                    running=False #arret de la boucle
+                if evenement.type==pygame.MOUSEBUTTONDOWN:
+                    running = False
+                    fin = 0
+                    game(monEcran)
+
         pygame.display.update()
 
 
