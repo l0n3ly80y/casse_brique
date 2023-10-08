@@ -19,8 +19,11 @@ pygame.mixer.music.play(-1)
 
 police = pygame.font.Font("LiberationSerif.ttf", 30)
 x, y = monEcran.get_rect().center
+x2, y2 = x, y
 y -= 325
 x -= 475
+x2 += 475
+y2 -= 325
 
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
@@ -28,6 +31,8 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     liste_briques = creer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
+    start_time = time.time()
+    game_time = 100 # Temps en secondes pour le timer
     while running:
         monEcran.blit(background_image, (0, 0))
 
@@ -70,6 +75,10 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         texte_rect = texte.get_rect()
         texte_rect.center = (x,y)
         monEcran.blit(texte, texte_rect)
+        temps = police.render("Temps restant : "+ str(int(game_time + (start_time - time.time()))), 1, (120, 10, 210))
+        temps_rect = temps.get_rect()
+        temps_rect.center = (x2, y2)
+        monEcran.blit(temps, temps_rect)
         pygame.display.update()
 
 
