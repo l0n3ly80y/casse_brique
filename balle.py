@@ -9,7 +9,7 @@ class Ball():
         self.rayon = 10 #Attribut rayon
         self.vitesse = pygame.Vector2(1, 1)*1.5 #Attribut vitesse
         self.dir = pygame.Vector2(1, 1) #Attribut dir
-        self.pos = pygame.Vector2(width/2, height/2) #Attribut position initiale
+        self.pos = pygame.Vector2(width/2, height/3) #Attribut position initiale
 
 
     def update(self):
@@ -18,6 +18,7 @@ class Ball():
         """
         self.pos.x += self.vitesse.x*self.dir.x
         self.pos.y += self.vitesse.y*self.dir.y
+        print("[*]vitesse y :",str(self.vitesse.y))
 
     def display(self):
         """
