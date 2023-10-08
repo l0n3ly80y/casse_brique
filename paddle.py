@@ -16,7 +16,7 @@ class Paddle():
     # méthode premettant l'affichage
     def display(self):
         # affichage du rectangle rect(x,y,longueur, largeur)
-        couleurPaddle=pygame.Color(100, 0, 200)
+        couleurPaddle=pygame.Color(120, 10, 210)
         pygame.draw.rect(self.monEcran,couleurPaddle,(self.pos.x, self.pos.y, self.w, self.h))
      # méthode qui gère le déplacement
     def move(self, step):

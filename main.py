@@ -14,6 +14,16 @@ score_initial=0
 background_image = pygame.image.load("Images/background.png")
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
+pygame.mixer.music.load("sasageyo.mp3")
+pygame.mixer.music.play(-1)
+
+police = pygame.font.Font("LiberationSerif.ttf", 30)
+x, y = monEcran.get_rect().center
+x2, y2 = x, y
+y -= 325
+x -= 475
+x2 += 475
+y2 -= 325
 
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
@@ -21,6 +31,8 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     liste_briques = creer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
+    start_time = time.time()
+    game_time = 200 # Temps en secondes pour le timer
     while running:
         monEcran.blit(background_image, (0, 0))
 
@@ -59,7 +71,23 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
                 liste_briques.pop(i)     #Suppression de la brique touchée
                 #del liste_briques[i]
                 ball.dir.y*=-1    #Redirection de la balle
+        texte = police.render("Briques restantes : "+ str(len(liste_briques)), 1, (120, 10, 210))
+        texte_rect = texte.get_rect()
+        texte_rect.center = (x,y)
+        monEcran.blit(texte, texte_rect)
+        
+        elapsed_time = time.time() - start_time
+        temps_restant = game_time - elapsed_time
+        tr = int(temps_restant//1)
+        if tr <= 0 :
+            tr = 0
+        temps = police.render(f"Temps restant : {tr}", 1, (120, 10, 210))
+        temps_rect = temps.get_rect()
+        temps_rect.center = (x2, y2)
+        monEcran.blit(temps, temps_rect)
         pygame.display.update()
+
+
 
 
 def creer_briques():
