@@ -182,7 +182,7 @@ def ending(monEcran, fin) :
 
     while running :
         monEcran.blit(ending_background, (0, 0))
-        if fin == 0 :
+        if fin == 1 :
             texte = police.render("Vouz avez gagné ! Cliquez pour rejouer", 1, (120, 10, 210))
             texte_rect = texte.get_rect()
             texte_rect.center = (x,y)
