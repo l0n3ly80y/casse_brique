@@ -43,11 +43,11 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
                 pygame.quit()  #arret de pygame
                 running=False #arret de la boucle
             if evenement.type==pygame.KEYDOWN:
-                if evenement.key==pygame.K_q:
+                if evenement.key==pygame.K_LEFT:
                     paddle.isMovingLeft = True
                     paddle.isMovingRight = False
 
-                elif evenement.key==pygame.K_d:
+                elif evenement.key==pygame.K_RIGHT:
                     paddle.isMovingRight = True
                     paddle.isMovingLeft = False
 
