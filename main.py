@@ -58,20 +58,23 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
         ball.checkEdges()
         ball.update()
         if (ball.meets(paddle)):
+            print(ball.vitesse.x)
+            print(ball.vitesse.y)
+
             if (ball.dir.y>0):
                 ball.dir.y=-ball.dir.y
             if paddle.isMovingRight:
-                if ball.vitesse.x>0:
+                if ball.dir.x>0:
                     ball.vitesse.x+=0.4
                 else:
                     ball.vitesse.x-=0.5
 
 
             elif paddle.isMovingLeft:
-                if ball.vitesse.x<0:
-                    ball.vitesse.x+=0.4
+                if ball.dir.x>0:
+                    ball.vitesse.x-=0.4
                 else:
-                    ball.vitesse.x-=0.5
+                    ball.vitesse.x+=0.5
 
 
 
