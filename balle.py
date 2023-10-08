@@ -23,7 +23,7 @@ class Ball():
         """
         Méthode pour afficher la balle
         """
-        couleurBall=pygame.Color('#FFAA00')
+        couleurBall=pygame.Color('#00AA00')
 
         pygame.draw.circle(monEcran,couleurBall,(self.pos.x, self.pos.y),self.rayon)
 

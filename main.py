@@ -14,6 +14,8 @@ score_initial=0
 background_image = pygame.image.load("Images/background.png")
 background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
+pygame.mixer.music.load("sasageyo.mp3")
+pygame.mixer.music.play(-1)
 
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
