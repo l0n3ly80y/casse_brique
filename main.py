@@ -25,17 +25,17 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     liste_briques = creer_briques()
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
-    
+
     start_time = time.time()
     game_time = 200 # Temps en secondes pour le timer
-    
+
     gameplay_background = pygame.image.load("Images/background.png")
     gameplay_background = pygame.transform.scale(gameplay_background, (WIDTH, HEIGHT)) #Affichage du fond d'écran*
 
     pygame.mixer.music.load("sasageyo.mp3")
     pygame.mixer.music.play(-1) #Lancement de la musique
     pygame.mixer.music.set_volume(1)
-    
+
     while running:
         monEcran.blit(gameplay_background, (0, 0))
 
@@ -127,10 +127,10 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
 
 
 
-def homescreen() :
+def homescreen(monEcran) :
     homescreen_background = pygame.image.load("Images/homescreen.png")
     homescreen_background = pygame.transform.scale(homescreen_background, (WIDTH, HEIGHT)) #Création du fond d'écran
-    
+
     pygame.mixer.music.load("op1.mp3")
     pygame.mixer.music.play(-1) #Lancement de la musique
     pygame.mixer.music.set_volume(0.15)
@@ -145,6 +145,7 @@ def homescreen() :
                 if evenement.type==pygame.MOUSEBUTTONDOWN:
                     running = False
                     game(monEcran,score_initial)
+        pygame.display.update()
 
 
 
@@ -169,4 +170,4 @@ def creer_briques():
 
 
 if __name__=='__main__':
-    homescreen()
+    homescreen(monEcran)
