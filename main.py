@@ -17,6 +17,7 @@ x -= 400
 x_tps_restant += 400
 y_tps_restant -= 325
 
+
 def game(monEcran):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou on quitte
