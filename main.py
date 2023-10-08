@@ -32,7 +32,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     paddle=Paddle(WIDTH ,HEIGHT,monEcran)#creation du paddle
     ball=Ball()
     start_time = time.time()
-    game_time = 100 # Temps en secondes pour le timer
+    game_time = 200 # Temps en secondes pour le timer
     while running:
         monEcran.blit(background_image, (0, 0))
 
@@ -75,11 +75,19 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         texte_rect = texte.get_rect()
         texte_rect.center = (x,y)
         monEcran.blit(texte, texte_rect)
-        temps = police.render("Temps restant : "+ str(int(game_time + (start_time - time.time()))), 1, (120, 10, 210))
+        
+        elapsed_time = time.time() - start_time
+        temps_restant = game_time - elapsed_time
+        tr = int(temps_restant//1)
+        if tr <= 0 :
+            tr = 0
+        temps = police.render(f"Temps restant : {tr}", 1, (120, 10, 210))
         temps_rect = temps.get_rect()
         temps_rect.center = (x2, y2)
         monEcran.blit(temps, temps_rect)
         pygame.display.update()
+
+
 
 
 def creer_briques():
