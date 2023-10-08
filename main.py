@@ -61,6 +61,21 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         if (ball.meets(paddle)):
             if (ball.dir.y>0):
                 ball.dir.y=-ball.dir.y
+            if paddle.isMovingRight:
+                if ball.vitesse.x>0:
+                    ball.vitesse.x*=1.1
+                else:
+                    ball.vitesse.x-=0.5
+
+
+            elif paddle.isMovingLeft:
+                if ball.vitesse.x<0:
+                    ball.vitesse.x*=1.1
+                else:
+                    ball.vitesse.x+=0.5
+
+
+
 
             #appel des méthodes pour le paddle
 
@@ -71,9 +86,11 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             liste_briques[i].display()   #Affichage des liste_briques
         for i in range(len(liste_briques)-1,-1,-1):#Parcours de la liste inversée
             if (ball.meetBricks(liste_briques[i])):#collision avec la balle
+                #balle.vitesse.x=pygame.Vector2(1, 1)*1.5
                 if ball.dir.y>0:
                     if ball.pos.x>liste_briques[i].pos.x+5 and ball.pos.x < liste_briques[i].pos.x-5+liste_briques[i].l:
                         ball.dir.y*=-1
+
                         print('collison de la balle avec le haut dune brique')
                     else:
                         ball.dir.x*=-1
