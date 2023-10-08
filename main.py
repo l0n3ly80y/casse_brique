@@ -142,12 +142,8 @@ def homescreen(monEcran) :
                     running=False #arret de la boucle
                 if evenement.type==pygame.MOUSEBUTTONDOWN:
                     running = False
-<<<<<<< HEAD
-                    game(monEcran,score_initial)
-        pygame.display.update()
-=======
                     game(monEcran)
->>>>>>> a032ded1654a2ac6e35bd1a3f5e62fc6fd56b956
+        pygame.display.update()
 
 
 
