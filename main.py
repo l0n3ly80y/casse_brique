@@ -63,16 +63,16 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
                 ball.dir.y=-ball.dir.y
             if paddle.isMovingRight:
                 if ball.vitesse.x>0:
-                    ball.vitesse.x*=1.1
+                    ball.vitesse.x+=0.4
                 else:
                     ball.vitesse.x-=0.5
 
 
             elif paddle.isMovingLeft:
                 if ball.vitesse.x<0:
-                    ball.vitesse.x*=1.1
+                    ball.vitesse.x+=0.4
                 else:
-                    ball.vitesse.x+=0.5
+                    ball.vitesse.x-=0.5
 
 
 
