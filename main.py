@@ -17,13 +17,13 @@ background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT)) #Af
 pygame.mixer.music.load("sasageyo.mp3")
 pygame.mixer.music.play(-1) #Lancement de la musique
 
-police = pygame.font.Font("LiberationSerif.ttf", 30)
+police = pygame.font.Font("pixel-font.TTF", 30)
 x, y = monEcran.get_rect().center
-x2, y2 = x, y #Coordonnées des textes à afficher
+x_tps_restant, y_tps_restant = x, y #Coordonnées des textes à afficher
 y -= 325
 x -= 475
-x2 += 475
-y2 -= 325
+x_tps_restant += 450
+y_tps_restant -= 325
 
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
@@ -70,7 +70,10 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             if (ball.meetBricks(liste_briques[i])):#collision avec la balle
                 liste_briques.pop(i)     #Suppression de la brique touchée
                 #del liste_briques[i]
-                ball.dir.y*=-1    #Redirection de la balle
+                if ball.dir.y>0:
+                    ball.dir.x*=-1
+                else:
+                    ball.dir.y*=-1    #Redirection de la balle
 
         texte = police.render("Briques restantes : "+ str(len(liste_briques)), 1, (120, 10, 210))
         texte_rect = texte.get_rect()
@@ -84,7 +87,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             tr = 0
         temps = police.render(f"Temps restant : {tr}", 1, (120, 10, 210))
         temps_rect = temps.get_rect()
-        temps_rect.center = (x2, y2)
+        temps_rect.center = (x_tps_restant, y_tps_restant)
         monEcran.blit(temps, temps_rect) #Affichage du temps restant
 
         pygame.display.update()
