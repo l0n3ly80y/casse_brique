@@ -120,7 +120,7 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
 
         elapsed_time = time.time() - start_time
         temps_restant = game_time - elapsed_time
-        tr = int(temps_restant//1) #Calcul du temps restant
+        tr = int(temps_restant) #Calcul du temps restant
         if tr <= 0 :
             tr = 0
         temps = police.render(f"Temps restant : {tr}", 1, (120, 10, 210))
@@ -182,7 +182,7 @@ def ending(monEcran, fin) :
 
     while running :
         monEcran.blit(ending_background, (0, 0))
-        if fin == 0 :
+        if fin == 1 :
             texte = police.render("Vouz avez gagné ! Cliquez pour rejouer", 1, (120, 10, 210))
             texte_rect = texte.get_rect()
             texte_rect.center = (x,y)
