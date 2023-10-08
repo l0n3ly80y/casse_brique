@@ -19,6 +19,8 @@ y_tps_restant -= 325
 
 
 def game(monEcran):#fonction qui est lancée au debut d'une partie
+    brick_sound = pygame.mixer.Sound("brick_effect.mp3")
+    brick_sound.set_volume(0.6)
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou on quitte
     liste_briques = creer_briques()
@@ -26,7 +28,7 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
     ball=Ball()
 
     start_time = time.time()
-    game_time = 200 # Temps en secondes pour le timer
+    game_time = 210 # Temps en secondes pour le timer
 
     gameplay_background = pygame.image.load("Images/background.png")
     gameplay_background = pygame.transform.scale(gameplay_background, (WIDTH, HEIGHT)) #Affichage du fond d'écran*
@@ -89,6 +91,8 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
             liste_briques[i].display()   #Affichage des liste_briques
         for i in range(len(liste_briques)-1,-1,-1):#Parcours de la liste inversée
             if (ball.meetBricks(liste_briques[i])):#collision avec la balle
+
+                pygame.mixer.Sound.play(brick_sound)
                 #balle.vitesse.x=pygame.Vector2(1, 1)*1.5
                 if ball.dir.y>0:
                     if ball.pos.x>liste_briques[i].pos.x+5 and ball.pos.x < liste_briques[i].pos.x-5+liste_briques[i].l:
