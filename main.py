@@ -9,8 +9,6 @@ pygame.init()
 WIDTH ,HEIGHT=1280,720 #Taille de la fenetre de jeu
 
 monEcran=pygame.display.set_mode((WIDTH ,HEIGHT ))
-score_initial=0
-
 police = pygame.font.Font("pixel-font.TTF", 30)
 x, y = monEcran.get_rect().center
 x_tps_restant, y_tps_restant = x, y #Coordonnées des textes à afficher
@@ -19,7 +17,7 @@ x -= 400
 x_tps_restant += 400
 y_tps_restant -= 325
 
-def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
+def game(monEcran):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou on quitte
     liste_briques = creer_briques()
@@ -144,8 +142,12 @@ def homescreen(monEcran) :
                     running=False #arret de la boucle
                 if evenement.type==pygame.MOUSEBUTTONDOWN:
                     running = False
+<<<<<<< HEAD
                     game(monEcran,score_initial)
         pygame.display.update()
+=======
+                    game(monEcran)
+>>>>>>> a032ded1654a2ac6e35bd1a3f5e62fc6fd56b956
 
 
 
