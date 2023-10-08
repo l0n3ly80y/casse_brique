@@ -17,6 +17,11 @@ background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 pygame.mixer.music.load("sasageyo.mp3")
 pygame.mixer.music.play(-1)
 
+police = pygame.font.Font("LiberationSerif.ttf", 30)
+x, y = monEcran.get_rect().center
+y -= 325
+x -= 475
+
 def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     """Cette fonction est toute la partie gameplay du jeu"""
     running=True#cette variable permet d'arreter la partie quand on meurt ou genre on quitte tu vois ?
@@ -61,6 +66,10 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
                 liste_briques.pop(i)     #Suppression de la brique touchée
                 #del liste_briques[i]
                 ball.dir.y*=-1    #Redirection de la balle
+        texte = police.render("Briques restantes : "+ str(len(liste_briques)), 1, (120, 10, 210))
+        texte_rect = texte.get_rect()
+        texte_rect.center = (x,y)
+        monEcran.blit(texte, texte_rect)
         pygame.display.update()
 
 
