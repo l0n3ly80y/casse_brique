@@ -18,7 +18,6 @@ class Ball():
         """
         self.pos.x += self.vitesse.x*self.dir.x
         self.pos.y += self.vitesse.y*self.dir.y
-        print("[*]dir y :",str(self.dir.y))
 
     def display(self):
         """

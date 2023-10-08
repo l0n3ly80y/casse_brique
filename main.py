@@ -11,8 +11,10 @@ WIDTH ,HEIGHT=1280,720 #Taille de la fenetre de jeu
 monEcran=pygame.display.set_mode((WIDTH ,HEIGHT ))
 score_initial=0
 
-background_image = pygame.image.load("Images/background.png")
-background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT)) #Affichage du fond d'écran
+gameplay_background = pygame.image.load("Images/background.png")
+gameplay_background = pygame.transform.scale(gameplay_background, (WIDTH, HEIGHT)) #Affichage du fond d'écran
+#title_background = pygame.image.load("Images/title_background.png")
+#title_background = pygame.transform.scale(title_background, (WIDTH, HEIGHT)) #Affichage du fond d'écran
 
 pygame.mixer.music.load("sasageyo.mp3")
 pygame.mixer.music.play(-1) #Lancement de la musique
@@ -34,7 +36,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
     start_time = time.time()
     game_time = 200 # Temps en secondes pour le timer
     while running:
-        monEcran.blit(background_image, (0, 0))
+        monEcran.blit(gameplay_background, (0, 0))
 
         for evenement in pygame.event.get():# Boucle sur les evenements
             if evenement.type==pygame.QUIT: #Si l'evenement est quitter
@@ -59,6 +61,7 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
         if (ball.meets(paddle)):
             if (ball.dir.y>0):
                 ball.dir.y=-ball.dir.y
+
             #appel des méthodes pour le paddle
 
         paddle.display() #affichage
@@ -68,12 +71,23 @@ def game(monEcran,score_initial):#fonction qui est lancée au debut d'une partie
             liste_briques[i].display()   #Affichage des liste_briques
         for i in range(len(liste_briques)-1,-1,-1):#Parcours de la liste inversée
             if (ball.meetBricks(liste_briques[i])):#collision avec la balle
-                liste_briques.pop(i)     #Suppression de la brique touchée
-                #del liste_briques[i]
                 if ball.dir.y>0:
-                    ball.dir.x*=-1
+                    if ball.pos.x>liste_briques[i].pos.x+5 and ball.pos.x < liste_briques[i].pos.x-5+liste_briques[i].l:
+                        ball.dir.y*=-1
+                        print('collison de la balle avec le haut dune brique')
+                    else:
+                        ball.dir.x*=-1
+                        print("collision avec un cote vers le bas")
                 else:
-                    ball.dir.y*=-1    #Redirection de la balle
+
+                    if ball.pos.x>liste_briques[i].pos.x+5 and ball.pos.x < liste_briques[i].pos.x-5+liste_briques[i].l:
+                        ball.dir.y*=-1
+                        print('collison de la balle avec le bas dune brique')
+                    else:
+                        ball.dir.x*=-1
+                        print("collision avec un cote vers le bas")
+
+                liste_briques.pop(i)     #Suppression de la brique touchée
 
         texte = police.render("Briques restantes : "+ str(len(liste_briques)), 1, (120, 10, 210))
         texte_rect = texte.get_rect()
@@ -115,5 +129,5 @@ def creer_briques():
     return liste_briques
 
 
-
-game(monEcran,score_initial)
+if __name__=='__main__':
+    game(monEcran,score_initial)
