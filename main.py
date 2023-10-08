@@ -127,7 +127,7 @@ def game(monEcran):#fonction qui est lancée au debut d'une partie
         temps_rect = temps.get_rect()
         temps_rect.center = (x_tps_restant, y_tps_restant)
         monEcran.blit(temps, temps_rect) #Affichage du temps restant
-        if ball.pos.y>paddle.pos.y+14:
+        if ball.pos.y>paddle.pos.y+30:
             time.sleep(1)
             tr=0
         if tr == 0 :
