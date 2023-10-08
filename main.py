@@ -150,7 +150,6 @@ def homescreen(monEcran) :
         pygame.display.update()
 
 
-
 def creer_briques():
     """
     Renvoie la liste des coordonnées des briques
